@@ -27,12 +27,10 @@ public class CommandeService {
         else return -1;
     }
     public Commande updateCommande(Long id,Commande commande) {
-       Commande c=new Commande();
-        if(findById(id).isPresent()) {
-        	 c=findById(id).get();
+       Commande c=findById(id).get();
         c.setQuantite(commande.getQuantite());
         commandeDao.save(c);
-        }
+        
         return c;
     }
 
