@@ -1,9 +1,8 @@
 package ma.project.siteecommerce.controllers;
 
 
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Encoding;
-import io.swagger.v3.oas.annotations.media.Schema;
+
+
 import ma.project.siteecommerce.entites.Categorie;
 import ma.project.siteecommerce.entites.Produit;
 import ma.project.siteecommerce.services.CategorieService;
