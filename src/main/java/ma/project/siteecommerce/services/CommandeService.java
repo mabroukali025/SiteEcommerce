@@ -27,10 +27,16 @@ public class CommandeService {
         else return -1;
     }
     public Commande updateCommande(Long id,Commande commande) {
-        Commande c=findById(id).get();
+        Commande c;
+        if(findById(id).isEmpty()) {
+        	return null;
+        }
+        else {
+        c=findById(id).get();
         c.setQuantite(commande.getQuantite());
         commandeDao.save(c);
         return c;
+        }
     }
 
     public Optional<Commande> findById(Long id){
