@@ -24,12 +24,18 @@ public class CategorieService {
     }
 
     public Categorie updateCategorie(Long id, Categorie categorie) {
-        Categorie cat=findById(id).get();
-        cat.setType(categorie.getType());
-        cat.setDescription(categorie.getDescription());
-        categorieDao.save(cat);
-        return cat;
+        Optional<Categorie> optionalCategorie = findById(id);
+        if (optionalCategorie.isPresent()) {
+            Categorie cat = optionalCategorie.get();
+            cat.setType(categorie.getType());
+            cat.setDescription(categorie.getDescription());
+            return categorieDao.save(cat);
+        } else {
+            // Gérer le cas où la catégorie n'est pas trouvée, par exemple, lancer une exception.
+            throw new RuntimeException("Catégorie non trouvée pour l'ID : " + id);
+        }
     }
+
     public Optional<Categorie> findById(Long id) {
         return categorieDao.findById(id);
     }
