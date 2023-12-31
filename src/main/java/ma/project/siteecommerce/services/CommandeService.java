@@ -26,13 +26,19 @@ public class CommandeService {
         }
         else return -1;
     }
-    public Commande updateCommande(Long id,Commande commande) {
-       Commande c=findById(id).get();
-        c.setQuantite(commande.getQuantite());
-        commandeDao.save(c);
-        
-        return c;
+    public Commande updateCommande(Long id, Commande commande) {
+        Optional<Commande> optionalCommande = findById(id);
+
+        if (optionalCommande.isPresent()) {
+            Commande c = optionalCommande.get();
+            c.setQuantite(commande.getQuantite());
+            return commandeDao.save(c);
+        } else {
+            // Gérer le cas où la commande n'est pas trouvée, par exemple, lancer une exception.
+            throw new RuntimeException("Commande non trouvée pour l'ID : " + id);
+        }
     }
+
 
     public Optional<Commande> findById(Long id){
         return commandeDao.findById(id);
