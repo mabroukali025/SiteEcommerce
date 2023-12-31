@@ -39,7 +39,6 @@ public class ProduitService {
             p.setPrix(produit.getPrix());
             return produitDao.save(p);
         } else {
-            // Gérer le cas où le produit n'est pas trouvé, par exemple, lancer une exception.
             throw new RuntimeException("Produit non trouvé pour l'ID : " + id);
         }
     }
