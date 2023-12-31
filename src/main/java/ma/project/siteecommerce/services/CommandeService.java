@@ -28,7 +28,6 @@ public class CommandeService {
     }
     public Commande updateCommande(Long id, Commande commande) {
         Optional<Commande> optionalCommande = findById(id);
-
         if (optionalCommande.isPresent()) {
             Commande c = optionalCommande.get();
             c.setQuantite(commande.getQuantite());
@@ -38,8 +37,7 @@ public class CommandeService {
             throw new RuntimeException("Commande non trouvée pour l'ID : " + id);
         }
     }
-
-
+    
     public Optional<Commande> findById(Long id){
         return commandeDao.findById(id);
     }
